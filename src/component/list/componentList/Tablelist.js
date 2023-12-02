@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Context } from '../../../App'
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -22,7 +22,7 @@ function Tablelist({ newData }) {
             }
         })
 
-        setData(NewDataOnclick)
+       return setData(NewDataOnclick)
 
     }
     // จัดการ state ตอนลบ
@@ -42,16 +42,16 @@ function Tablelist({ newData }) {
     }
 
     // รีเฟช ข้อมูล
-    function HandleOnclickRefresh(){
+    function HandleOnclickRefresh() {
         setSearch('');
         setData(Datas);
     }
-    
+
     return (
         <>
             <div className=' w-3/12  sm:m-auto sm:p-3 sm:w-full flex justify-center sm:items-center sm:justify-between rounded-t-lg  bg-slate-50 md:h-12'>
                 <div className='none sm:inline-flex md:flex md:items-center md:w-6/12'>
-                    <p>ค้นหา</p> <input className='ml-4 border-2 w-10/12 rounded-lg border-slate-500 p-1' value={search}  onChange={HandleOnSearch} placeholder='ชื่อผลงาน'></input>
+                    <p>ค้นหา</p> <input className='ml-4 border-2 w-10/12 rounded-lg border-slate-500 p-1' value={search} onChange={HandleOnSearch} placeholder='ชื่อผลงาน'></input>
                     <div className='p-3 ml-2 text-white rounded-lg bg-blue-900 cursor-pointer' onClick={HandleOnClickSearch} >
                         <FaSearch />
                     </div>
@@ -78,14 +78,14 @@ function Tablelist({ newData }) {
                         </tr>
                         {newData.map((data) => (
                             <tr key={data.id} className='w-full hover:bg-slate-300'>
-                                <td className=' sm:w-12'>
-                                    <input type='checkbox' className='h-full w-6' checked={data.Status} onChange={() => HandleOnchangeCheckBox(data.id)} />
+                                <td onChange={() => HandleOnchangeCheckBox(data.id)} className=' sm:w-12'>
+                                    <input type='checkbox' className='h-full w-6 ' checked={data.Status} onChange={() => HandleOnchangeCheckBox(data.id)} />
                                 </td>
-                                <td className='lg:p-3 p-1 sm:p-2 md:p-3 text-start'>{data.id}. {data.name}</td>
-                                <td className='lg:p-3 p-1 sm:p-2 md:p-3'>{data.Category}</td>
-                                <td className='lg:p-3 p-1 sm:p-2 md:p-3'>{data.statusShowDate ? new Date(data.dateStart).toLocaleDateString('en-GB') : '-'}</td>
-                                <td className='lg:p-3 p-1 sm:p-2 md:p-3'>{data.statusShowDate ? (data.statusShowDateEnd ? new Date(data.dateEnd).toLocaleDateString('en-GB') : '-') : '-'}</td>
-                                <td className='lg:p-3 p-1 sm:p-2 md:p-3 '>{data.Status ? <div className='flex items-center text-green-600 justify-between'><TfiCheckBox /><p>แสดง</p></div> : <div className='flex items-center text-red-600 justify-between'><FaRegWindowClose />ไม่แสดง</div>}</td>
+                                <td onClick={() => HandleOnchangeCheckBox(data.id)} className='lg:p-3 p-1 sm:p-2 md:p-3 text-start'>{data.id}. {data.name}</td>
+                                <td onClick={() => HandleOnchangeCheckBox(data.id)} className='lg:p-3 p-1 sm:p-2 md:p-3'>{data.Category}</td>
+                                <td onClick={() => HandleOnchangeCheckBox(data.id)} className='lg:p-3 p-1 sm:p-2 md:p-3'>{data.statusShowDate ? new Date(data.dateStart).toLocaleDateString('en-GB') : '-'}</td>
+                                <td onClick={() => HandleOnchangeCheckBox(data.id)} className='lg:p-3 p-1 sm:p-2 md:p-3'>{data.statusShowDate ? (data.statusShowDateEnd ? new Date(data.dateEnd).toLocaleDateString('en-GB') : '-') : '-'}</td>
+                                <td onClick={() => HandleOnchangeCheckBox(data.id)} className='lg:p-3 p-1 sm:p-2 md:p-3 '>{data.Status ? <div className='flex items-center text-green-600 justify-between'><TfiCheckBox /><p>แสดง</p></div> : <div className='flex items-center text-red-600 justify-between'><FaRegWindowClose />ไม่แสดง</div>}</td>
                                 <td className='lg:p-3 p-1 sm:p-2 md:p-3'>{
                                     selected.length === 0 ? <p className='cursor-not-allowed' onClick={() => alert('คุณไม่ได้เลือก')}> ลายละเอียด </p> : <Link to='/detail'><p>ลายละเอียด</p></Link>}</td>
                             </tr>

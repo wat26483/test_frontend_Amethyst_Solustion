@@ -10,12 +10,13 @@ import { Datas } from './Datas';
 function App() {
   const [data, setData] = useState(Datas); // จำนวณข้อมูลทั้งหมด
   const [selected,setSelected] = useState([]);// จำนวณข้อมูลทีจะแสดง
-  
+
   // เมือมีการคลิ๊ก checkbox เก็บ statate
   useEffect(()=>{
-    const selecteditem =  data?.filter((selectdata)=>selectdata.Status===true)
+    const selecteditem =  data.filter((selectdata)=>selectdata.Status===true)
     setSelected(selecteditem)
   },[data])
+  
   return (
     <Context.Provider value={{ data, setData,selected,setSelected }}>
       <div className='app'>
