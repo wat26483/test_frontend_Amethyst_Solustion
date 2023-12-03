@@ -49,18 +49,18 @@ function Tablelist({ newData }) {
 
     return (
         <>
-            <div className=' w-3/12  sm:m-auto sm:p-3 sm:w-full flex justify-center sm:items-center sm:justify-between rounded-t-lg  bg-slate-50 md:h-12'>
-                <div className='none sm:inline-flex md:flex md:items-center md:w-6/12'>
-                    <p>ค้นหา</p> <input className='ml-4 border-2 w-10/12 rounded-lg border-slate-500 p-1' value={search} onChange={HandleOnSearch} placeholder='ชื่อผลงาน'></input>
-                    <div className='p-3 ml-2 text-white rounded-lg bg-blue-900 cursor-pointer' onClick={HandleOnClickSearch} >
+            <div className=' w-full justify-between  p-2 sm:m-auto sm:p-3 sm:w-full flex sm:items-center sm:justify-between rounded-t-lg  bg-slate-50 md:h-12'>
+                <div className='sm:inline-flex flex md:flex md:items-center md:w-6/12'>
+                    <p className='none sm:block'>ค้นหา</p> <input className='ml-4 border-2 w-10/12 rounded-lg border-slate-500 p-1' value={search} onChange={HandleOnSearch} placeholder='ชื่อผลงาน'></input>
+                    <div className='p-2 sm:p-3 ml-2 flex items-center text-white rounded-lg bg-blue-900 cursor-pointer' onClick={HandleOnClickSearch} >
                         <FaSearch />
                     </div>
-                    <div className='p-3 ml-2 text-white rounded-lg bg-blue-900 cursor-pointer' onClick={HandleOnclickRefresh} >
+                    <div className='p-2 sm:p-3 ml-2 flex items-center text-white rounded-lg bg-blue-900 cursor-pointer' onClick={HandleOnclickRefresh} >
                         <FiRefreshCw />
                     </div>
                 </div>
                 <div >
-                    <button className='flex items-center p-1 rounded-lg border-2 border-slate-200' onClick={HandleOnClickDelete}><MdOutlineDeleteForever size={30} />Delete</button>
+                    <button className='flex items-center p-1 rounded-lg border-2 border-slate-200' onClick={HandleOnClickDelete}><MdOutlineDeleteForever size={30} /><p className='none sm:block'>Delete</p></button>
                 </div>
             </div>
             <div className='overflow-x-auto'>
